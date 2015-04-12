@@ -1,24 +1,13 @@
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import static java.lang.System.out;
+
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
 import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.NavigableSet;
-import java.util.PriorityQueue;
-import java.util.Queue;
 import java.util.Set;
 import java.util.TreeSet;
-
-import static java.lang.System.out;
 
 
 
@@ -78,12 +67,6 @@ public class Alice {
 		
 		
 		String[] s = (String[])Array.newInstance(String.class, 10);
-		
-		
-		Integer[] i = new Integer[10];
-		
-		
-		
 		
 		
 		s[0] = "aaa";

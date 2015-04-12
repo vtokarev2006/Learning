@@ -4,7 +4,7 @@ import java.util.Arrays;
 public class Compare {
 	
 	
-	public static void sortSelect(Comparable[] a){
+	public static void sortSelect(Comparable<?>[] a){
 		
 		int N = a.length;
 		int min;
@@ -21,7 +21,7 @@ public class Compare {
 		
 	}
 	
-	public static void sortInsert(Comparable[] a){
+	public static void sortInsert(Comparable<?>[] a){
 		int N = a.length;
 		
 		for(int i=1;i<N;i++){
@@ -33,7 +33,7 @@ public class Compare {
 	}
 	
 	
-	public static void sortShell(Comparable[] a){
+	public static void sortShell(Comparable<?>[] a){
 		int N=a.length;
 		int h=1;
 		while(h<N/3) h = 3*h+1;
@@ -57,7 +57,7 @@ public class Compare {
 	}
 	
 	
-	private static void merge(Comparable[] a, Comparable[] b1, Comparable[] b2){
+	private static void merge(Comparable<?>[] a, Comparable<?>[] b1, Comparable<?>[] b2){
 		
 		int n1=b1.length;
 		int n2=b2.length;
@@ -87,7 +87,7 @@ public class Compare {
 	}
 	
 	
-	public static void mergeSort(Comparable[] a) {
+	public static void mergeSort(Comparable<?>[] a) {
 		int N=a.length;
 		if(N<15) {
 			sortInsert(a);
@@ -97,8 +97,8 @@ public class Compare {
 		int mid = N/2;
 		
 		
-		Comparable[] b1 = Arrays.copyOfRange(a, 0, mid);
-		Comparable[] b2 = Arrays.copyOfRange(a, mid, N);
+		Comparable<?>[] b1 = Arrays.copyOfRange(a, 0, mid);
+		Comparable<?>[] b2 = Arrays.copyOfRange(a, mid, N);
 		
 		
 		mergeSort(b1);
@@ -112,7 +112,7 @@ public class Compare {
 		
 	}
 	
-	public static int partition(Comparable[] a, int lo, int hi){
+	public static int partition(Comparable<?>[] a, int lo, int hi){
 		int k=StdRandom.uniform(lo, hi+1);
 		
 		int i=lo;
@@ -163,7 +163,7 @@ public class Compare {
 
 	}
 	
-	private static void quickSort(Comparable[] a, int lo, int hi){
+	private static void quickSort(Comparable<?>[] a, int lo, int hi){
 		
 		if (lo>=hi) return;
 		int j = partition(a, lo, hi);
@@ -174,7 +174,7 @@ public class Compare {
 	}
 	
 	
-	public static void quickSort(Comparable[] a){
+	public static void quickSort(Comparable<?>[] a){
 		quickSort(a, 0, a.length-1);
 	}
 	
