@@ -24,16 +24,16 @@ public class Program1 {
 		
 		try {
 		
-			Class cl = Class.forName(clName);
-			Class super—l = Class.forName(clName).getSuperclass();
+			Class<?> cl = Class.forName(clName);
+			Class<?> superl = Class.forName(clName).getSuperclass();
 			
 			String clModName = Modifier.toString(cl.getModifiers());
 	
 			if (clModName!="") out.print(clModName + " ");
 			out.print("class "+cl.getName()+" ");
 			
-			if ((super—l!=null) && (super—l!=Object.class))
-				out.print("extends " + super—l.getName());
+			if ((superl!=null) && (superl!=Object.class))
+				out.print("extends " + superl.getName());
 			out.print(" { \n");
 	
 			out.print(" \n");
@@ -56,16 +56,16 @@ public class Program1 {
 		
 	}
 
-	static void printConstructors(Class cl){
+	static void printConstructors(Class<?> cl){
 		
-		Constructor[] constr  = cl.getDeclaredConstructors();
+		Constructor<?>[] constr  = cl.getDeclaredConstructors();
 		
-		for (Constructor c:constr){
+		for (Constructor<?> c:constr){
 			
 			out.print("\t");
 			if(Modifier.toString(c.getModifiers())!="") out.print(Modifier.toString(c.getModifiers()) + " ");
 			out.print(c.getName() + " (");
-			Class[] params = c.getParameterTypes();
+			Class<?>[] params = c.getParameterTypes();
 			for(int i=0;i<params.length;i++){
 				if (i>0) out.print(", ");
 				out.print(params[i].getName());
@@ -77,7 +77,7 @@ public class Program1 {
 		
 	}
 	
-	static void printMethods(Class cl){
+	static void printMethods(Class<?> cl){
 		Method[] meth = cl.getMethods();
 		
 		for(Method m:meth){
@@ -87,7 +87,7 @@ public class Program1 {
 			out.print(m.getReturnType().getName() + " ");
 			out.print(m.getName() + " (");
 			
-			Class[] params = m.getParameterTypes();
+			Class<?>[] params = m.getParameterTypes();
 			for(int i=0;i<params.length;i++){
 				if (i>0) out.print(", ");
 				out.print(params[i].getName());
@@ -99,7 +99,7 @@ public class Program1 {
 		
 	}
 	
-	static void printFields(Class cl){
+	static void printFields(Class<?> cl){
 		Field [] fields = cl.getDeclaredFields();
 		for (Field f:fields) {
 			out.print("\t");

@@ -1,7 +1,5 @@
 package p;
 
-import javax.swing.JOptionPane;
-
 public class Program3 {
 
 	public static void main(String[] args) throws IllegalArgumentException, IllegalAccessException {
