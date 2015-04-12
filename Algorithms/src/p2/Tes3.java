@@ -17,7 +17,7 @@ import javax.swing.Timer;
  * @author vtokarev
  *
  */
-public class Test1 implements ActionListener  {
+public class Tes3 implements ActionListener  {
 	static Date date;
 	
 	static
@@ -34,7 +34,7 @@ public class Test1 implements ActionListener  {
 	}
 	
 	public static void main(String[] args){
-		Test1 t = new Test1();
+		Tes3 t = new Tes3();
 		Timer timer = new Timer(1000, t);
 		
 		timer.start();
