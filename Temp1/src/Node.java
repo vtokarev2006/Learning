@@ -13,9 +13,7 @@ public class Node<T> {
 	
 	
 	public static void main(String[] args) {
-		
-		@SafeVarargs
-		Node<String>[] n=new Node<String>[10];
+
 		
 		
 		
