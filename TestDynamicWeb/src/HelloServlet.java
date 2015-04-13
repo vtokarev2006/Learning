@@ -1,6 +1,8 @@
 
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,7 +28,12 @@ public class HelloServlet extends HttpServlet {
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		response.setContentType("text/html");
+		response.setCharacterEncoding("UTF-8");
+		PrintWriter pw = response.getWriter();
+		pw.println("<b>Привет");
+		pw.close();
+		
 	}
 
 }
