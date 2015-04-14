@@ -37,7 +37,10 @@ public class HelloServlet extends GenericServlet {
 		res.setContentType("text/html");
 		res.setCharacterEncoding("UTF-8");
 		PrintWriter pw = res.getWriter();
+		pw.println("<h2>");
 		pw.println("Привет");
+		pw.println("</h2>");
+
 		pw.close();
 		
 	}
