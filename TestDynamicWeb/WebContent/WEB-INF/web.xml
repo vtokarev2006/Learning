@@ -10,8 +10,20 @@
 	
 	<servlet-mapping>
 		<servlet-name>HelloServlet</servlet-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/formhandlerservlet</url-pattern>
 	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>multivaluedfieldhandlerservlet</servlet-name>
+		<servlet-class>MultiValueFieldServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>multivaluedfieldhandlerservlet</servlet-name>
+		<url-pattern>/multivaluedfieldhandlerservlet</url-pattern>
+	</servlet-mapping>
+
   
   
   
