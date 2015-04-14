@@ -13,13 +13,13 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class HelloServlet
  */
 @WebServlet("/HelloServlet")
-public class HelloServlet extends HttpServlet {
+public class MultiValueFieldServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HelloServlet() {
+    public MultiValueFieldServlet() {
         super();
     }
     
@@ -28,18 +28,22 @@ public class HelloServlet extends HttpServlet {
     		throws ServletException, IOException {
     	
     	
-    	String enteredValue = req.getParameter("enteredValue");
+    	String[] enteredValue = req.getParameterValues("option");
     	
 		resp.setContentType("text/html");
 		resp.setCharacterEncoding("UTF-8");
 		PrintWriter pw = resp.getWriter();
 		
-		
 		pw.println("<p>");
-		pw.print("Вы ввели: ");
-		pw.println(enteredValue);
-	
 		
+		if (enteredValue!=null) {
+			pw.println("Вы ввели: ");
+			for(String s:enteredValue)
+				pw.println(s);
+			
+		} else {
+			pw.print("Вы ничего не выбрали");
+		}
 		pw.println("</p>");
 
 		pw.close();
