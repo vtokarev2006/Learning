@@ -15,7 +15,7 @@ public class ConsoleClient {
 		
 		Long current = System.currentTimeMillis();
 		List<Book> allBooks = bookDAO.findAllBooks();
-		List<Book> booksByKeyword = bookDAO.searchBooksByKeyword("Java");
+		List<Book> booksByKeyword = bookDAO.searchBooksByKeyword("Groovy");
 		List<Category> allCategories = bookDAO.findAllCategories();
 		
 		System.out.println("------------Categories------------");
@@ -26,7 +26,7 @@ public class ConsoleClient {
 		
 		System.out.println();
 		System.out.println();
-		System.out.println("------------Books by keyword 'Java'------------");
+		System.out.println("------------Books by keyword 'Groovy'------------");
 
 		
 		for(Book b:booksByKeyword) {

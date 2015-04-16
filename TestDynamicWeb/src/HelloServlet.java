@@ -47,4 +47,27 @@ public class HelloServlet extends HttpServlet {
     	
     	
     }
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+    		throws ServletException, IOException {
+    	// TODO Auto-generated method stub
+    	String enteredValue = req.getParameter("enteredValue");
+    	
+		resp.setContentType("text/html");
+		resp.setCharacterEncoding("UTF-8");
+		PrintWriter pw = resp.getWriter();
+		
+
+		
+		pw.println("<p>");
+		pw.print("Вы ввели: ");
+		pw.println(enteredValue);
+	
+		
+		pw.println("</p>");
+
+		pw.close();
+    }
+    
+    
 }
