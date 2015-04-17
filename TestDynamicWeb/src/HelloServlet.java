@@ -36,37 +36,27 @@ public class HelloServlet extends HttpServlet {
 		
 		
 		pw.println("<p>");
+		pw.println("Здравствуете " + getInitParameter("email") + "<br>");
+		pw.println("Сервлет выполняется на компьютере " + getServletContext().getInitParameter("machine") + "<br>");
+		
 		pw.print("Вы ввели: ");
 		pw.println(enteredValue);
 	
 		
 		pw.println("</p>");
 
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		pw.println("!!!!!!!!!!!!!!!");
+		
 		pw.close();
     	
     	
     	
-    }
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-    		throws ServletException, IOException {
-    	// TODO Auto-generated method stub
-    	String enteredValue = req.getParameter("enteredValue");
-    	
-		resp.setContentType("text/html");
-		resp.setCharacterEncoding("UTF-8");
-		PrintWriter pw = resp.getWriter();
-		
-
-		
-		pw.println("<p>");
-		pw.print("Вы ввели: ");
-		pw.println(enteredValue);
-	
-		
-		pw.println("</p>");
-
-		pw.close();
     }
     
     
