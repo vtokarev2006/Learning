@@ -1,16 +1,12 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
 
 import model.Author;
 import model.Book;
@@ -19,23 +15,20 @@ import model.Category;
 public class BookDAOImpl implements BookDAO {
 
 	
-	private Connection getConnection() throws SQLException{
-		
-		Context ctx=null;
-		DataSource ds=null;
+	static
+	{
 		try {
-			ctx = new InitialContext();
-	        ds = (DataSource) ctx.lookup("jdbc/testpool");
-			
-		} catch (NamingException e) {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-         
-        return ds.getConnection();
-		
+	}	
+	
+	public Connection getConnection() throws SQLException{
+		return DriverManager.getConnection("jdbc:mysql://localhost:3306/books", "root", "Qwerty12");
 	}
 	
-	private void closeConnection(Connection connection){
+	public void closeConnection(Connection connection){
 		if(connection==null) return;
 		else {
 			try {
