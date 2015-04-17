@@ -2,7 +2,6 @@
     <wb-module deploy-name="BookStore2">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/lib"/>
         <property name="context-root" value="BookStore2"/>
         <property name="java-output-path" value="/BookStore2/build/classes"/>
     </wb-module>
