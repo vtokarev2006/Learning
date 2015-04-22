@@ -48,12 +48,13 @@ public class BookDAOImpl implements BookDAO {
 		String bookSql="select * from book";
 		
 
-
 		Connection con = null ;
 		
 		try {
 			
 			con = getConnection();
+			
+			
 			
 			PreparedStatement authorStat = con.prepareStatement(authorSql);
 			PreparedStatement bookStat = con.prepareStatement(bookSql);

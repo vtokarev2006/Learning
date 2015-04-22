@@ -7,23 +7,23 @@
   	<servlet-class>controller.BookController</servlet-class>
   	<init-param>
   		<param-name>base</param-name>
-  		<param-value>/bookWeb/books</param-value>
+  		<param-value>/BookStore2/books</param-value>
   	</init-param>
   	<init-param>
   		<param-name>imageURL</param-name>
-  		<param-value>/bookWeb/images</param-value>
+  		<param-value>/BookStore2/images</param-value>
   	</init-param>
   	<load-on-startup>1</load-on-startup>
   </servlet>
   
   <context-param>
   	<param-name>param1</param-name>
-  	<param-value>/bookWeb/books</param-value>
+  	<param-value>/BookStore2/books</param-value>
   </context-param>
   
   <context-param>
   	<param-name>imageURL</param-name>
-  	<param-value>/bookWeb/images</param-value>
+  	<param-value>/BookStore2/images</param-value>
   </context-param>
   
   <servlet-mapping>

@@ -6,6 +6,12 @@
 		<title>Hello World</title>
 	</head>
 	<body>
-		Hello World!
+	
+<%
+    String redirectURL = "books";
+    response.sendRedirect(redirectURL);
+%>
+	
+	
 	</body>
 </html>
