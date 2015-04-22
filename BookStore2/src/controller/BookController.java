@@ -51,6 +51,7 @@ public class BookController extends HttpServlet {
 		
 		out.println("------------Categories------------");
 		out.println();
+		out.print(allCategories.size());
 		
 		for (Category c:allCategories) 
 			out.println(c);
