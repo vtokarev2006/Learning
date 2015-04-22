@@ -8,9 +8,10 @@
 	<body>
 	
 <%
-    String redirectURL = "books";
-    response.sendRedirect(redirectURL);
+//    application.getRequestDispatcher("/books").include(request, response);
+    
 %>
+	Fuck you
 	
 	
 	</body>
