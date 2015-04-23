@@ -1,16 +1,16 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
-<%@ include file="header.jsp" %>
-<jsp:include page="leftColumn.jsp" flush="true" />
+<c:import url="header.jsp"/>
+<c:import url="leftColumn.jsp"/>
+
 
 
 <div id="content">
 
-	<jsp:include page="list.jsp" flush="true" />
+	<c:import url="list.jsp"/>
 
 
 </div>
 
-<%@ include file="footer.jsp" %>
-
+<c:import url="footer.jsp"/>
