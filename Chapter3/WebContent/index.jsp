@@ -5,6 +5,7 @@
 <head>
 
 <%
+	
 	request.getRequestDispatcher("/books").forward(request, response);
 %>
 
