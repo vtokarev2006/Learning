@@ -7,8 +7,10 @@ public class LoginAction extends ActionSupport {
 	private static final long serialVersionUID = 1L;
 	private String username;
 	private String password;
+
 	
-	public String execute(){
+	@Override
+	public String execute() throws Exception {
 		if (getUsername().equals("kpss") && getPassword().equals("123")) {
 			return "success";
 		} else {
@@ -29,11 +31,4 @@ public class LoginAction extends ActionSupport {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
-	
-	
-	
-	
-	
 }

@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<s:property value="username"/>
+	<h1>Hello&#160;<s:property value="username"/>!</h1>
 
 
 </body>

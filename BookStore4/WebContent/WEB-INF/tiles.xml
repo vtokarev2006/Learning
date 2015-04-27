@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="baseLayout" template="/template/baseLayout.jsp">
+		<put-attribute name="title" value="Template" />
+		<put-attribute name="header" value="/template/header.jsp" />
+		<put-attribute name="menu" value="/template/menu.jsp" />
+		<put-attribute name="body" value="/template/body.jsp" />
+	</definition>
+	
+	<definition name="login" extends="baseLayout">
+		<put-attribute name="title" value="Log in" />
+		<put-attribute name="menu" value="" />
+		<put-attribute name="body" value="/login.jsp" />
+	</definition>
+	
+	<definition name="error" extends="baseLayout">
+		<put-attribute name="title" value="Log in" />
+		<put-attribute name="menu" value="" />
+		<put-attribute name="body" value="/login.jsp" />
+	</definition>
+	
+	<definition name="home" extends="baseLayout">
+		<put-attribute name="title" value="Log in" />
+		<put-attribute name="menu" value="/template/menu.jsp" />
+		<put-attribute name="body" value="/view/home.jsp" />
+	</definition>
+	
+	<definition name="logout" extends="baseLayout">
+		<put-attribute name="title" value="Log in" />
+		<put-attribute name="menu" value="" />
+		<put-attribute name="body" value="/login.jsp" />
+	</definition>
+	
+	<definition name="allBooks" extends="baseLayout">
+		<put-attribute name="title" value="All Books" />
+		<put-attribute name="body" value="/allBooks.jsp" />
+	</definition>
+
+</tiles-definitions>

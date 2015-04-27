@@ -8,11 +8,12 @@
 </head>
 <body>
 	<h3>Login Bookstore</h3>
-	<s:actionerror/>
+	
+	<s:actionerror  />
 	
 	<s:form action="login.action" method="post">
 	
-		<s:textfield name="username" key="label.username" size="30" />
+		<s:textfield name="username" key = "label.username"  size="30" />
 		<s:password name="password" key = "label.password" size="30" />
 		<s:submit method="execute" align="center" />
 	

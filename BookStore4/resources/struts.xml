@@ -6,14 +6,27 @@
 	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
 	<constant name="struts.custom.i18n.resources" value="ApplicationResources" />
 	
-	
 	<package name="default" extends="struts-default" namespace="/">
 	
-		<action name="login" class="action.LoginAction" >
-			<result name="success">view/home.jsp</result>
-			<result name="error">login.jsp</result>
-		
+		<result-types>
+			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
+		</result-types>
+	
+		<action name="*Link" method="{1}" class="action.LoginAction">
+			<result name="login" type="tiles">allBooks</result>
+			<result name="allBooks" type="tiles" >allBooks</result>
 		</action>
+		
+		
+		<action name="login" class="action.LoginAction">
+			<result name="success" type="tiles">home</result>
+			<result name="error" type="tiles">login</result>
+		</action>
+		
+		<action name="logout">
+			<result name="success" type="tiles">logout</result>
+		</action>
+		
 		
 	</package>
 	
