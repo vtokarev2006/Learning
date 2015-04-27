@@ -3,10 +3,16 @@
 
 <struts>
 	<constant name="struts.devMode" value="true" />
-	<package name="basicstruts2" extends="struts-default">
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.custom.i18n.resources" value="ApplicationResources" />
 	
-		<action name="index">
-			<result>/index.jsp</result>
+	
+	<package name="default" extends="struts-default" namespace="/">
+	
+		<action name="login" class="action.LoginAction" >
+			<result name="success">view/home.jsp</result>
+			<result name="error">login.jsp</result>
+		
 		</action>
 		
 	</package>
