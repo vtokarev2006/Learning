@@ -1,4 +1,4 @@
-package action;
+package vtokarev;
 
 public class LoginAction {
 
