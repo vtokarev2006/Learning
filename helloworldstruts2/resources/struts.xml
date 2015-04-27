@@ -4,8 +4,19 @@
 <struts>
 	<constant name="struts.devMode" value="true" />
 	<package name="basicstruts2" extends="struts-default">
-		<action name="index">
+		<action name="index1">
 			<result>/index.jsp</result>
 		</action>
+		
+		
+		
+		
+		
+		
 	</package>
+	
+	
+	
+	
+	
 </struts>
