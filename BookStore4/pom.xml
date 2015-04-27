@@ -33,4 +33,12 @@
   </dependencies>
   <artifactId>BookStore4</artifactId>
   <name>BookStore4</name>
+  
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+  
+  
+  
+  
 </project>
