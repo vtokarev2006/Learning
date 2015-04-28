@@ -6,6 +6,6 @@
 </head>
 
 <body>
-		Home Page
+		you've logged out. 
 </body>
 </html>

@@ -11,6 +11,7 @@ import java.util.List;
 import model.Author;
 import model.Book;
 import model.Category;
+import model.User;
 
 public class BookDAOImpl implements BookDAO {
 
@@ -40,7 +41,6 @@ public class BookDAOImpl implements BookDAO {
 	}
 	
 	
-	@Override
 	public List<Book> findAllBooks() {
 		List<Book> books = new ArrayList<>();
 		
@@ -103,7 +103,6 @@ public class BookDAOImpl implements BookDAO {
 		return books;
 	}
 
-	@Override
 	public List<Book> searchBooksByKeyword(String keyWord) {
 		List<Book> books = new ArrayList<>();
 		
@@ -166,7 +165,6 @@ public class BookDAOImpl implements BookDAO {
 		return books;
 	}
 
-	@Override
 	public List<Category> findAllCategories() {
 		List<Category> categories = new ArrayList<>();
 		
@@ -207,19 +205,108 @@ public class BookDAOImpl implements BookDAO {
 		return categories;
 	}
 
-	@Override
+
+	public List<Book> findBooksByCategory(int categoryId) {
+		List<Book> books = new ArrayList<>();
+		
+		String authorSql="select * from author where book_id=?";
+		String bookSql="select * from book where category_id=?";
+		
+
+		Connection con = null;
+		
+		try {
+			
+			con = getConnection();
+			
+			
+			
+			PreparedStatement authorStat = con.prepareStatement(authorSql);
+			
+			PreparedStatement bookStat = con.prepareStatement(bookSql);
+			bookStat.setLong(1, categoryId);
+			ResultSet bookRes = bookStat.executeQuery();
+			 
+			 while (bookRes.next()) {
+				 
+				Book book  = new Book();
+				 
+				book.setId(bookRes.getLong("ID"));
+				book.setCategoryId(bookRes.getLong("CATEGORY_ID"));
+				book.setPublisheName(bookRes.getString("PUBLISHER"));
+				book.setBookTitle(bookRes.getString("BOOK_TITLE"));
+				 
+				List<Author> authors = new ArrayList<>();
+				
+				
+				authorStat.clearParameters();
+				authorStat.setLong(1, book.getId());
+				ResultSet authorRes = authorStat.executeQuery();
+				
+				while(authorRes.next()){
+					Author author = new Author();
+					author.setId(authorRes.getLong("ID"));
+					author.setBookID(book.getId());
+					author.setFirstName(authorRes.getString("FIRST_NAME"));
+					author.setLastName(authorRes.getString("LAST_NAME"));
+					authors.add(author);
+				}
+				
+				book.setAuthors(authors);
+				books.add(book);
+				 
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			
+			closeConnection(con);			
+			
+		}
+		
+		return books;
+	}
+
+	public boolean isUserAllowed(User user) {
+		
+
+		String sql = "select * from user where username like ? and password like ?";
+
+		Connection connection = null;
+		boolean valid = false;
+
+		try {
+			connection = getConnection();
+			PreparedStatement statement = connection.prepareStatement(sql);
+			statement.clearParameters();
+			statement.setString(1, user.getUserName());
+			statement.setString(2, user.getPassword());
+			ResultSet resultset = statement.executeQuery();
+			if (resultset.next()) {
+				valid = true;
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} finally {
+			closeConnection(connection);
+		}
+		return valid;
+		
+	}
+	
+	
 	public void insert(Book book) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void update(Book book) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void delete(Long bookId) {
 		// TODO Auto-generated method stub
 

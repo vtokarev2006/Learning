@@ -8,27 +8,21 @@
 	
 	<package name="default" extends="struts-default" namespace="/">
 	
-
 		<result-types>
 			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
 		</result-types>		
-		
 	
-		<action name="*Link" method="{1}" class="action.LoginAction">
-			<result name="login" type="tiles">allBooks</result>
-			<result name="allBooks" type="tiles" >allBooks</result>
-		</action>
-		
-		
-		<action name="login" class="action.LoginAction">
-			<result name="success" type="tiles">home</result>
-			<result name="error" type="tiles">login</result>
-		</action>
-		
-		<action name="logout">
-			<result name="success" type="tiles">logout</result>
-		</action>
-		
+		<action name="*Link" method="{1}" class="action.BookController">
+			<result name="login" type="tiles">login</result>
+			<result name="allBooks" type="tiles">booklist</result>
+			<result name="booksByCategory" type="tiles">booklist</result>
+			<result name="searchByKeyword" type="tiles">booklist</result>
+			<result name="home" type="tiles">home</result>
+			<result name="executelogin" type="tiles">executelogin</result>
+			<result name="selectedBooks" type="tiles">selectedBooks</result>
+			<result name="logout" type="tiles">logout</result>
+			<result name="error" type="tiles">error</result>
+		</action>	
 		
 	</package>
 	

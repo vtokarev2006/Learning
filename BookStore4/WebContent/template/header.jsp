@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
 <div class="header">
@@ -8,14 +8,13 @@ pageEncoding="ISO-8859-1"%>
 			<span style="color: white;">STORE</span>
 		</span>
 	</h2>
-	<span style="color: black; margin-left: 15px;">
-		<s:if test="%{username!=null && !hasActionErrors() }">
-			Welcome <s:property value="username" /> |
-			<a href='<s:url action="logout.action"/>'>Log out</a>
-		</s:if>
-		
-		<s:else>
-			Login
+	<span style="color: black; margin-left: 15px;"> <s:if
+			test="%{#session.username != null  && !hasActionErrors() }">Welcome <s:property
+				value="#session.username" /> | <a
+				href='<s:url action="logoutLink"/>'>Log out</a>
+		</s:if> <s:else>
+			<a href='<s:url action="loginLink"/>'>Login</a>
 		</s:else>
+
 	</span>
 </div>
