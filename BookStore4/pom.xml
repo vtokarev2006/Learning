@@ -25,20 +25,37 @@
     </plugins>
   </build>
   <dependencies>
+  
+  
+  
   	<dependency>
   		<groupId>org.apache.struts</groupId>
   		<artifactId>struts2-core</artifactId>
   		<version>2.3.20</version>
   	</dependency>
+
+	<dependency>
+		<groupId>org.apache.struts</groupId>
+		<artifactId>struts2-tiles3-plugin</artifactId>
+		<version>2.3.20</version>
+	</dependency>
+	
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-log4j12</artifactId>
+        <version>1.5.6</version>
+    </dependency>	
+	
+	
+	
   </dependencies>
+  
   <artifactId>BookStore4</artifactId>
+  
   <name>BookStore4</name>
   
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-  
-  
-  
   
 </project>

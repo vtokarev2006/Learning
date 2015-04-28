@@ -8,9 +8,11 @@
 	
 	<package name="default" extends="struts-default" namespace="/">
 	
+
 		<result-types>
 			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
-		</result-types>
+		</result-types>		
+		
 	
 		<action name="*Link" method="{1}" class="action.LoginAction">
 			<result name="login" type="tiles">allBooks</result>
