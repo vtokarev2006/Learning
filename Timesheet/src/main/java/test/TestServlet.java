@@ -3,30 +3,25 @@ package test;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.annotation.Resource;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.transaction.HeuristicMixedException;
-import javax.transaction.HeuristicRollbackException;
-import javax.transaction.NotSupportedException;
-import javax.transaction.RollbackException;
-import javax.transaction.SystemException;
-import javax.transaction.UserTransaction;
 
-import model.User;
+import entity.Calendar;
+
+
 
 public class TestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	@PersistenceContext
+/*	@PersistenceContext
 	EntityManager em;
-
+	
 	@Resource
-	UserTransaction ut;
+	UserTransaction ut;*/
+	
+	
 	
     public TestServlet() {
         super();
@@ -34,42 +29,27 @@ public class TestServlet extends HttpServlet {
 
 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-	try {
-
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html");
 		
-		out.print("Hello");
+		out.print("Hello <br />");
 		
-		User user = new User();
+		Calendar calendar = new Calendar();
+		calendar.setDayOff(true);
 		
-		user.setFirstName("Slava");
-		user.setLastName("KPSS");
 		
-		ut.begin();
-		em.persist(user);
-		ut.commit();
+		
+//		ut.begin();
+//		em.persist(calendar );
+//		ut.commit();
+		
+		out.print(calendar.isDayOff() + "<br/>");
+		out.print(calendar.getId() + "<br/>");
+		
+		
+		
+		
 
-	} catch (NotSupportedException e) {
-		e.printStackTrace();
-	} catch (SystemException e) {
-		e.printStackTrace();
-	} catch (SecurityException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	} catch (IllegalStateException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	} catch (RollbackException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	} catch (HeuristicMixedException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	} catch (HeuristicRollbackException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
 	
 	
 	}
