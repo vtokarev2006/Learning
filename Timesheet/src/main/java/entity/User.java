@@ -23,6 +23,8 @@ public class User {
 	private Agency agency;
 	private LocalDate hireDate;
 	private LocalDate leaveDate;
+	
+	
 	public Long getId() {
 		return id;
 	}
