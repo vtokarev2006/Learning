@@ -15,6 +15,8 @@ import javax.transaction.UserTransaction;
 
 import entity.User;
 
+
+
 public class TestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
@@ -34,7 +36,7 @@ public class TestServlet extends HttpServlet {
 		doPost(request, response);
 	}
 
-	@Transactional
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 		
