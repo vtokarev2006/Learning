@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -26,6 +27,7 @@ public class User {
 	
 	private String password;
 	
+	@Column(unique=true)
 	private String email;
 	
 	@ManyToOne
@@ -38,10 +40,12 @@ public class User {
 	private Department department;
 	
 	@ManyToOne
-	@Column(nullable=false)
+	@JoinColumn(nullable=false)
 	private Agency agency;
 	
+	@Column(nullable=false)
 	private LocalDate hireDate;
+	
 	private LocalDate leaveDate;
 	
 	
