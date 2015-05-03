@@ -6,11 +6,10 @@
 
 	<persistence-unit name="persist" transaction-type="JTA">
   
-	<jta-data-source>jdbc/timesheet</jta-data-source>
-	<class>entity.Calendar</class>
-    <properties>
-      <property name="javax.persistence.schema-generation.database.action" value="create"/>
-      <property name="eclipselink.logging.level" value="INFO"/>
-    </properties>
+		<jta-data-source>jdbc/timesheet</jta-data-source>
+		<properties>
+			<property name="javax.persistence.schema-generation.database.action" value="create"/>
+			<property name="eclipselink.target-database" value="MYSQL"/>
+		</properties>
 	</persistence-unit>
 </persistence>

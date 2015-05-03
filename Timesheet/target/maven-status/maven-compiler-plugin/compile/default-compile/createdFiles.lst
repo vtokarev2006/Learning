@@ -1,9 +1,6 @@
-model\Agency.class
-model\Client.class
-model\Position.class
-model\Brand.class
-model\Calendar.class
-model\HfmCode.class
+entity\Client.class
+entity\Calendar.class
 test\TestServlet.class
-model\Department.class
-model\User.class
+entity\Brand.class
+util\LocalDateConverter.class
+entity\Agency.class
