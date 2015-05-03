@@ -2,21 +2,30 @@ package entity;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-
+@Entity
 public class User {
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
+	@Column(nullable=false)
 	private String firstName;
+	
+	@Column(nullable=false)
 	private String lastName;
+	
+	@Column(unique=true)
 	private String userName;
+	
 	private String password;
+	
 	private String email;
 	
 	@ManyToOne
@@ -29,6 +38,7 @@ public class User {
 	private Department department;
 	
 	@ManyToOne
+	@Column(nullable=false)
 	private Agency agency;
 	
 	private LocalDate hireDate;

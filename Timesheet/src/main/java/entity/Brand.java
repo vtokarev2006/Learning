@@ -2,6 +2,7 @@ package entity;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,12 +14,19 @@ public class Brand {
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+	
+	@Column(nullable=false)
 	private String name;
 	
 	@ManyToOne
+	@Column(nullable=false)
 	private Client client;
 	
+	
+	@Column(nullable=false)
 	private LocalDate startDate;
+	
+	
 	private LocalDate endDate;
 	
 	

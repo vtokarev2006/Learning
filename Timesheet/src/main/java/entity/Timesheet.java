@@ -3,6 +3,7 @@ package entity;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,21 +15,28 @@ public class Timesheet {
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	private String name;
+	
+	@Column(nullable=false)
 	private LocalTime time;
+	
+	@Column(nullable=false)
 	private LocalDate date;
 	
 	@ManyToOne
+	@Column(nullable=false)
 	private Client client;
 	
 	@ManyToOne
 	private Brand brand;
 	
 	@ManyToOne
+	@Column(nullable=false)
 	private User user;
 	
 	@ManyToOne
+	@Column(nullable=false)
 	private User regUser;
+	
 	private String description;
 	
 	
@@ -37,12 +45,6 @@ public class Timesheet {
 	}
 	public void setId(Long id) {
 		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
 	}
 	public LocalTime getTime() {
 		return time;

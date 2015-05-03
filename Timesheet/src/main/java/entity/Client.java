@@ -3,6 +3,7 @@ package entity;
 import java.time.LocalDate;
 import java.util.SortedSet;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,13 +15,18 @@ public class Client {
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+	
+	@Column(nullable=false)
 	private String name;
-	
-	private LocalDate startDate;
-	private LocalDate endDate;
-	
+
 	@OneToMany(mappedBy="client")
 	private SortedSet<Brand> brands;
+	
+	@Column(nullable=false)
+	private LocalDate startDate;
+	
+	private LocalDate endDate;
+	
 
 	public Long getId() {
 		return id;
