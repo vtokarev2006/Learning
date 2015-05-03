@@ -7,20 +7,31 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class Position {
+public class Timesheet {
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 	private LocalTime time;
 	private LocalDate date;
+	
+	@ManyToOne
 	private Client client;
+	
+	@ManyToOne
 	private Brand brand;
+	
+	@ManyToOne
 	private User user;
+	
+	@ManyToOne
 	private User regUser;
 	private String description;
+	
+	
 	public Long getId() {
 		return id;
 	}

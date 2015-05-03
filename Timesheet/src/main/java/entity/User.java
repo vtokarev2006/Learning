@@ -5,21 +5,32 @@ import java.time.LocalDate;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 
 public class User {
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+	
 	private String firstName;
 	private String lastName;
 	private String userName;
 	private String password;
 	private String email;
+	
+	@ManyToOne
 	private HfmCode hfmCode;
+	
+	@ManyToOne
 	private Position position;
+	
+	@ManyToOne
 	private Department department;
+	
+	@ManyToOne
 	private Agency agency;
+	
 	private LocalDate hireDate;
 	private LocalDate leaveDate;
 	
