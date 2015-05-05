@@ -3,7 +3,8 @@ package test;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
-
+import java.util.HashSet;
+import java.util.Set;
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -13,7 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.UserTransaction;
 
-import entity.Calendar;
+import entity.Brand;
+import entity.Client;
 
 
 
@@ -34,29 +36,54 @@ public class TestServlet extends HttpServlet {
 
 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	try {
+		ut.begin();
+		
+		
+		
 	
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html");
 		
 		out.print("Hello <br />");
 		
-		Calendar calendar = new Calendar();
-		calendar.setDayOff(true);
-		calendar.setDate(LocalDate.now() );
+		
+		Client client = new Client();
+		client.setName("Client");
+		client.setStartDate(LocalDate.now());
+		
+		Brand brand1 = new Brand();
+		brand1.setName("Brand1");
+		brand1.setStartDate(LocalDate.now());
+		
+		Brand brand2 = new Brand();
+		brand2.setName("Brand2");
+		brand2.setStartDate(LocalDate.now());
 		
 		
+
 		
-		ut.begin();
-		em.persist(calendar );
+		Set<Brand> brands = new HashSet<>();
+		brands.add(brand1);
+		brands.add(brand2);
+		client.setBrands(brands);
+		
+		
+
+		em.persist(client);
+		em.persist(brand1);
+		em.persist(brand2);
+
+		
+	
+		
+		out.print("Client: "+client.getName() + "<br/>");
+		out.print("Brands: "+client.getBrands().toString() + "<br/>");
+		
+		
 		ut.commit();
-		
-		out.print(calendar.isDayOff() + "<br/>");
-		out.print(calendar.getId() + "<br/>");
-		
 		
 		
 	} catch (Throwable e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 		

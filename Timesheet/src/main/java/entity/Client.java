@@ -1,13 +1,16 @@
 package entity;
 
 import java.time.LocalDate;
-import java.util.SortedSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -19,8 +22,9 @@ public class Client {
 	@Column(nullable=false)
 	private String name;
 
-	@OneToMany(mappedBy="client")
-	private SortedSet<Brand> brands;
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinColumn(name="CLIENT_ID")
+	private Set<Brand> brands;
 	
 	@Column(nullable=false)
 	private LocalDate startDate;
@@ -61,15 +65,12 @@ public class Client {
 		this.endDate = endDate;
 	}
 
-	public SortedSet<Brand> getBrands() {
+	public Set<Brand> getBrands() {
 		return brands;
 	}
 
-	public void setBrands(SortedSet<Brand> brands) {
+	public void setBrands(Set<Brand> brands) {
 		this.brands = brands;
 	}
-
-
-	
 	
 }

@@ -1,7 +1,6 @@
 package entity;
 
-import java.util.SortedSet;
-
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,7 +20,7 @@ public class Agency {
 	
 	@OneToMany
 	@JoinColumn(name="AGENCY_ID")
-	private SortedSet<Client> clients;
+	private Set<Client> clients;
 	
 	
 	
@@ -38,10 +37,10 @@ public class Agency {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public SortedSet<Client> getClients() {
+	public Set<Client> getClients() {
 		return clients;
 	}
-	public void setClients(SortedSet<Client> clients) {
+	public void setClients(Set<Client> clients) {
 		this.clients = clients;
 	}
 	
