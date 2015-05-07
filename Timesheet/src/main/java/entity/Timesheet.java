@@ -30,6 +30,12 @@ public class Timesheet {
 	@ManyToOne
 	private Brand brand;
 	
+	public LocalDate getRegDate() {
+		return regDate;
+	}
+	public void setRegDate(LocalDate regDate) {
+		this.regDate = regDate;
+	}
 	@ManyToOne
 	@JoinColumn(nullable=false)
 	private User user;
@@ -38,7 +44,13 @@ public class Timesheet {
 	@JoinColumn(nullable=false)
 	private User regUser;
 	
+	@Column(nullable=false)
+	private LocalDate regDate;
+	
+	
 	private String description;
+	
+	
 	
 	
 	public Long getId() {

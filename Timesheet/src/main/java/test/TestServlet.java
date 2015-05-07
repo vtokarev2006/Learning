@@ -54,13 +54,12 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 		Brand brand1 = new Brand();
 		brand1.setName("Brand1");
 		brand1.setStartDate(LocalDate.now());
+		brand1.setClient(client);
 		
 		Brand brand2 = new Brand();
 		brand2.setName("Brand2");
 		brand2.setStartDate(LocalDate.now());
-		
-		
-
+		brand2.setClient(client);
 		
 		Set<Brand> brands = new HashSet<>();
 		brands.add(brand1);

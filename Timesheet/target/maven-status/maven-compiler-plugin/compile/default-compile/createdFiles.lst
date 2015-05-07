@@ -1,6 +1,0 @@
-entity\Client.class
-entity\Calendar.class
-test\TestServlet.class
-entity\Brand.class
-util\LocalDateConverter.class
-entity\Agency.class

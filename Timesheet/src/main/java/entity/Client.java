@@ -3,15 +3,15 @@ package entity;
 import java.time.LocalDate;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
 @Entity
 public class Client {
@@ -22,8 +22,13 @@ public class Client {
 	@Column(nullable=false)
 	private String name;
 
-	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-	@JoinColumn(name="CLIENT_ID")
+	@ManyToMany(fetch=FetchType.EAGER, mappedBy="clients")
+	private Set<Agency> agencies;
+	
+	
+	
+	@OneToMany(fetch=FetchType.EAGER, mappedBy="client")
+	@OrderBy("name ASC")
 	private Set<Brand> brands;
 	
 	@Column(nullable=false)
@@ -31,6 +36,14 @@ public class Client {
 	
 	private LocalDate endDate;
 	
+
+	public Set<Agency> getAgencies() {
+		return agencies;
+	}
+
+	public void setAgencies(Set<Agency> agencies) {
+		this.agencies = agencies;
+	}
 
 	public Long getId() {
 		return id;
