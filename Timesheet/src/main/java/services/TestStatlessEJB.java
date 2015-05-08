@@ -28,7 +28,7 @@ public class TestStatlessEJB {
 	}
 	
 	
-	public void createClient(Client client){
+	public void persistClient(Client client){
 		
 		em.persist(client);
 			

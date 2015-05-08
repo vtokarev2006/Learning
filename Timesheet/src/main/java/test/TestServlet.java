@@ -72,7 +72,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 			brands.add(brand2);
 			client.setBrands(brands);
 			
-			testStatlessEJB.createClient(client);
+			testStatlessEJB.persistClient(client);
 
 			
 			out.print("Client: "+client.getName() + "<br/>");
