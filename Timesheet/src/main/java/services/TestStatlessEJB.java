@@ -1,6 +1,7 @@
 package services;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -17,10 +18,11 @@ public class TestStatlessEJB {
 	@PersistenceContext
 	private EntityManager em;
 
-	public List<Brand> GetAllBrands(){
+	public Set<Brand> GetAllBrands(){
 		
 		TypedQuery<Brand> query = em.createQuery("SELECT b FROM Brand b", Brand.class);
-		List<Brand> brands = query.getResultList();
+		Set<Brand> brands = new HashSet<>();
+		brands.addAll(query.getResultList());
 		return brands;
 		
 	}

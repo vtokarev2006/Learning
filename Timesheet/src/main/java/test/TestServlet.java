@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.ejb.EJB;
@@ -14,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import services.TestStatlessEJB;
 import entity.Brand;
 import entity.Client;
@@ -37,7 +37,7 @@ public class TestServlet extends HttpServlet {
     }
 
 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	try {
+//	try {
 		
 		String c = request.getParameter("case");
 		
@@ -49,25 +49,25 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 		
 		
 		if (c==null) return;
+		Client client = new Client();
+		Brand brand1 = new Brand();
+		Brand brand2 = new Brand();
+		Set<Brand> brands = new HashSet<>();
 		
 		switch (c) {
 		case "1":
 
-			Client client = new Client();
 			client.setName("Client");
 			client.setStartDate(LocalDate.now());
 			
-			Brand brand1 = new Brand();
 			brand1.setName("Brand1");
 			brand1.setStartDate(LocalDate.now());
 			brand1.setClient(client);
 			
-			Brand brand2 = new Brand();
 			brand2.setName("Brand2");
 			brand2.setStartDate(LocalDate.now());
 			brand2.setClient(client);
 			
-			Set<Brand> brands = new HashSet<>();
 			brands.add(brand1);
 			brands.add(brand2);
 			client.setBrands(brands);
@@ -81,9 +81,9 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 			
 			
 		case "2":
-			List<Brand> brands3 = testStatlessEJB.GetAllBrands();
+			brands = testStatlessEJB.GetAllBrands();
 			
-			for(Brand b:brands3)
+			for(Brand b:brands)
 				out.print(b.getName()+"<br />");
 			break;
 			
@@ -95,10 +95,10 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 
 		
 		
-	} catch (Throwable e) {
+/*	} catch (Throwable e) {
 		e.printStackTrace();
 	}
-		
+*/		
 
 	
 	
