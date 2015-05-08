@@ -4,16 +4,17 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
-import javax.annotation.Resource;
+
+import javax.ejb.EJB;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.transaction.UserTransaction;
-
+import services.TestStatlessEJB;
 import entity.Brand;
 import entity.Client;
 
@@ -25,8 +26,9 @@ public class TestServlet extends HttpServlet {
 	@PersistenceContext
 	EntityManager em;
 	
-	@Resource
-	UserTransaction ut;
+	
+	@EJB
+	TestStatlessEJB testStatlessEJB;
 	
 	
 	
@@ -36,50 +38,61 @@ public class TestServlet extends HttpServlet {
 
 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	try {
-		ut.begin();
 		
+		String c = request.getParameter("case");
 		
-		
-	
+
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html");
 		
 		out.print("Hello <br />");
 		
 		
-		Client client = new Client();
-		client.setName("Client");
-		client.setStartDate(LocalDate.now());
+		if (c==null) return;
 		
-		Brand brand1 = new Brand();
-		brand1.setName("Brand1");
-		brand1.setStartDate(LocalDate.now());
-		brand1.setClient(client);
+		switch (c) {
+		case "1":
+
+			Client client = new Client();
+			client.setName("Client");
+			client.setStartDate(LocalDate.now());
+			
+			Brand brand1 = new Brand();
+			brand1.setName("Brand1");
+			brand1.setStartDate(LocalDate.now());
+			brand1.setClient(client);
+			
+			Brand brand2 = new Brand();
+			brand2.setName("Brand2");
+			brand2.setStartDate(LocalDate.now());
+			brand2.setClient(client);
+			
+			Set<Brand> brands = new HashSet<>();
+			brands.add(brand1);
+			brands.add(brand2);
+			client.setBrands(brands);
+			
+			testStatlessEJB.createClient(client);
+
+			
+			out.print("Client: "+client.getName() + "<br/>");
+			out.print("Brands: "+client.getBrands().toString() + "<br/>");
+			break;
+			
+			
+		case "2":
+			List<Brand> brands3 = testStatlessEJB.GetAllBrands();
+			
+			for(Brand b:brands3)
+				out.print(b.getName()+"<br />");
+			break;
+			
+		}
 		
-		Brand brand2 = new Brand();
-		brand2.setName("Brand2");
-		brand2.setStartDate(LocalDate.now());
-		brand2.setClient(client);
-		
-		Set<Brand> brands = new HashSet<>();
-		brands.add(brand1);
-		brands.add(brand2);
-		client.setBrands(brands);
+
 		
 		
 
-		em.persist(client);
-		em.persist(brand1);
-		em.persist(brand2);
-
-		
-	
-		
-		out.print("Client: "+client.getName() + "<br/>");
-		out.print("Brands: "+client.getBrands().toString() + "<br/>");
-		
-		
-		ut.commit();
 		
 		
 	} catch (Throwable e) {

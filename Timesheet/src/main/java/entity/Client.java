@@ -3,6 +3,7 @@ package entity;
 import java.time.LocalDate;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -27,7 +28,7 @@ public class Client {
 	
 	
 	
-	@OneToMany(fetch=FetchType.EAGER, mappedBy="client")
+	@OneToMany(fetch=FetchType.EAGER, mappedBy="client", cascade={CascadeType.ALL})
 	@OrderBy("name ASC")
 	private Set<Brand> brands;
 	
