@@ -47,18 +47,17 @@ public class User {
 	@JoinColumn(nullable=false)
 	private Agency agency;
 	
-	@ManyToMany(fetch=FetchType.EAGER)
-	@JoinTable(joinColumns=@JoinColumn(name="USER_ID"), inverseJoinColumns=@JoinColumn(name="SECURITYGROUP_ID"))	
-	private Set<SecurityGroup> securityGroups;
-	
-	
-	
 	public Set<SecurityGroup> getSecurityGroups() {
 		return securityGroups;
 	}
 	public void setSecurityGroups(Set<SecurityGroup> securityGroups) {
 		this.securityGroups = securityGroups;
 	}
+	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinTable(joinColumns=@JoinColumn(name="USER_ID"), inverseJoinColumns=@JoinColumn(name="SECURITYGROUP_ID"))	
+	private Set<SecurityGroup> securityGroups;
+	
+
 	@Column(nullable=false)
 	private LocalDate hireDate;
 	
