@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import services.TestStatlessEJB;
 import entity.Brand;
 import entity.Client;
+import entity.SecurityGroup;
+import entity.User;
 
 
 
@@ -86,9 +88,8 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 			for(Brand b:brands)
 				out.print(b.getName()+"<br />");
 			break;
-			
-		}
 		
+		}
 
 		
 		
