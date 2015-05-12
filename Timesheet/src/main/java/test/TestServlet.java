@@ -17,8 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 import services.TestStatlessEJB;
 import entity.Brand;
 import entity.Client;
-import entity.SecurityGroup;
-import entity.User;
 
 
 
