@@ -12,15 +12,18 @@
 	<p>Login to access secure pages:</p>
 	<form method="post" action="j_security_check">
 		<h:panelGrid columns="2">
-			<h:outputLabel for="j_username" value="Username" />
-			<input type="text" name="j_username" />
 
-			<h:outputLabel for="j_password" value="Password" />
-			<input type="password" name="j_password" />
+				<p:outputLabel for="j_username" value="Username" />
+				<p:inputText type="text" id="j_username" />
+	
+				<p:outputLabel for="j_password" value="Password" />
+				<p:inputText type="password" id="j_password" />
+	
+				<h:outputText value="" />
+				<h:panelGrid columns="2">
+	
+				<p:commandButton type="submit" id="submit" value="Login" />
 
-			<h:outputText value="" />
-			<h:panelGrid columns="2">
-				<input type="submit" name="submit" value="Login" />
 			</h:panelGrid>
 		</h:panelGrid>
 	</form>
