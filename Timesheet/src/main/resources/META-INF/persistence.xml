@@ -10,6 +10,12 @@
 		<properties>
 			<property name="javax.persistence.schema-generation.database.action" value="create"/>
 			<property name="eclipselink.target-database" value="MYSQL"/>
+
+			<property name="javax.persistence.schema-generation.create-source" value="metadata-then-script"/>
+
+			<property name="javax.persistence.schema-generation.create-script-source" value="META-INF/sql/create.sql" />			
+			
+
 			
 			<property name="eclipselink.logging.level.sql" value="FINE"/>
 			<property name="eclipselink.logging.parameters" value="true"/>
