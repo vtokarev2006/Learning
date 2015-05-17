@@ -1,30 +1,24 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.List;
 
-
-/**
- * The persistent class for the task database table.
- * 
- */
 @Entity
 @NamedQuery(name="Task.findAll", query="SELECT t FROM Task t")
 public class Task implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
 	private String name;
 
-	//bi-directional many-to-one association to Project
 	@ManyToOne
 	private Project project;
 
-	//bi-directional many-to-one association to TaskLog
 	@OneToMany(mappedBy="task")
 	private List<TaskLog> taskLogs;
 
@@ -75,6 +69,28 @@ public class Task implements Serializable {
 		taskLog.setTask(null);
 
 		return taskLog;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Task other = (Task) obj;
+		if (id != other.id)
+			return false;
+		return true;
 	}
 
 }

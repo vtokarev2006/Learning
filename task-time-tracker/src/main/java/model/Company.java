@@ -1,16 +1,13 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.List;
 
-
-/**
- * The persistent class for the company database table.
- * 
- */
 @Entity
-@NamedQuery(name="Company.findAll", query="SELECT c FROM Company c")
+@NamedQuery(name="Company.findAll", query="SELECT c FROM Company c ORDER BY c.name ASC")
 public class Company implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -20,7 +17,6 @@ public class Company implements Serializable {
 
 	private String name;
 
-	//bi-directional many-to-one association to Project
 	@OneToMany(mappedBy="company")
 	private List<Project> projects;
 
@@ -63,6 +59,28 @@ public class Company implements Serializable {
 		project.setCompany(null);
 
 		return project;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Company other = (Company) obj;
+		if (id != other.id)
+			return false;
+		return true;
 	}
 
 }

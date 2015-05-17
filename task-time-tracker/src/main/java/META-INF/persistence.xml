@@ -11,8 +11,11 @@
 		<class>model.User</class>
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<properties>
+<!-- 		
 			<property name="eclipselink.exclude-eclipselink-orm" value="false"/>
-			<property name="javax.persistence.schema-generation.database.action" value="none"/>
+			
+ -->		
+ 			<property name="javax.persistence.schema-generation.database.action" value="none"/>
 			<property name="eclipselink.target-database" value="MYSQL"/>
 <!-- 			
 			<property name="javax.persistence.schema-generation.create-source" value="metadata-then-script"/>

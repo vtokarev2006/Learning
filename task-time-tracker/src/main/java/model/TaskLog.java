@@ -1,14 +1,11 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.Date;
 
-
-/**
- * The persistent class for the task_log database table.
- * 
- */
 @Entity
 @Table(name="task_log")
 @NamedQuery(name="TaskLog.findAll", query="SELECT t FROM TaskLog t")
@@ -28,11 +25,9 @@ public class TaskLog implements Serializable {
 	@Column(name="task_minutes")
 	private int taskMinutes;
 
-	//bi-directional many-to-one association to Task
 	@ManyToOne
 	private Task task;
 
-	//bi-directional many-to-one association to User
 	@ManyToOne
 	@JoinColumn(name="username")
 	private User user;
@@ -86,6 +81,28 @@ public class TaskLog implements Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		TaskLog other = (TaskLog) obj;
+		if (id != other.id)
+			return false;
+		return true;
 	}
 
 }
