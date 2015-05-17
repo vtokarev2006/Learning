@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@NamedQuery(name="Task.findAll", query="SELECT t FROM Task t")
+@NamedQuery(name="Task.findAll", query="SELECT t FROM Task t ORDER BY t.name ASC")
 public class Task implements Serializable {
 	private static final long serialVersionUID = 1L;
 
