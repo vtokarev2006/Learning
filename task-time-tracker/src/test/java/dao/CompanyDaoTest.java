@@ -40,4 +40,38 @@ public class CompanyDaoTest extends AbstractDaoForTesting {
 		logger.debug("\nFINISHED testFindAll()\n");
 	}
 
+	@Test
+	public void testPersist() throws Exception {
+		logger.debug("\nSTARTED testPersist()\n");
+		Company c = new Company();
+		final String NEW_NAME = "Persist Test Company name";
+		c.setName(NEW_NAME);
+		companyDao.persist(c);
+		assertTrue(c.getId() != null);
+		assertTrue(c.getName().equals(NEW_NAME));
+		logger.debug("\nFINISHED testPersist()\n");
+	}
+
+	@Test
+	public void testMerge() throws Exception {
+		logger.debug("\nSTARTED testMerge()\n");
+		final String NEW_NAME = "Merge Test Company New Name";
+		Company c = companyDao.findAll().get(0);
+		c.setName(NEW_NAME);
+		c = companyDao.merge(c);
+		assertTrue(c.getName().equals(NEW_NAME));
+		logger.debug("\nFINISHED testMerge()\n");
+	}
+
+	@Test
+	public void testRemove() throws Exception {
+		logger.debug("\nSTARTED testRemove()\n");
+		Company c = companyDao.findAll().get(0);
+		companyDao.remove(c);
+		List<Company> allItems = companyDao.findAll();
+		assertTrue("Deleted company may not be in findAll List",
+				!allItems.contains(c));
+		logger.debug("\nFINISHED testRemove()\n");
+	}
+
 }
