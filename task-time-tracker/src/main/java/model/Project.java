@@ -1,19 +1,19 @@
 package model;
 
-import java.io.Serializable;
-
 import javax.persistence.*;
 
 import java.util.List;
 
 @Entity
 @NamedQuery(name="Project.findAll", query="SELECT p FROM Project p ORDER BY p.name")
-public class Project implements Serializable {
+
+public class Project extends AbstractEntity implements EntityItem<Integer>  {
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 
 	private String name;
 
@@ -26,11 +26,12 @@ public class Project implements Serializable {
 	public Project() {
 	}
 
-	public int getId() {
+	@Override
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

@@ -1,7 +1,5 @@
 package model;
 
-import java.io.Serializable;
-
 import javax.persistence.*;
 
 import java.util.List;
@@ -10,14 +8,15 @@ import java.util.List;
 @Entity
 @NamedQueries({
 	@NamedQuery(name="User.findAll", query="SELECT u FROM User u ORDER BY u.firstName, u.lastName"),
+	
 	@NamedQuery(name="User.findByUsernamePassword", query="SELECT u FROM User u "
 			+ "WHERE ((u.username=:username) or (u.email=:username)) and (u.password=:password)"),
+			
 	@NamedQuery(name="User.findByUsername", query="SELECT u FROM User u WHERE u.username=:userName"),
 	@NamedQuery(name="User.findByEmail", query="SELECT u FROM User u WHERE u.email=:email")
 }) 
 
-@NamedQuery(name="User.findAll", query="SELECT u FROM User u")
-public class User implements Serializable {
+public class User extends AbstractEntity implements EntityItem<String>  {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -111,6 +110,13 @@ public class User implements Serializable {
 
 		return taskLog;
 	}
+	
+	@Override
+	public String getId() {
+		return username;
+	}
+	
+	
 
 	@Override
 	public int hashCode() {
@@ -137,5 +143,6 @@ public class User implements Serializable {
 			return false;
 		return true;
 	}
+
 
 }
