@@ -8,7 +8,18 @@ import java.util.Date;
 
 @Entity
 @Table(name="task_log")
-@NamedQuery(name="TaskLog.findAll", query="SELECT t FROM TaskLog t")
+@NamedQueries({
+	@NamedQuery(name="TaskLog.findAll", query="SELECT t FROM TaskLog t"),
+	
+	@NamedQuery(name="TaskLog.findByUser", query="SELECT t FROM TaskLog t "
+			+ "WHERE t.user=:user and t.taskDate BETWEEN :startDate AND :endDate ORDER BY t.taskDate ASC"),
+			
+	@NamedQuery(name="TaskLog.findTaskLogCountByTask", query="SELECT count(t) FROM TaskLog t WHERE t.task=:task"),
+	@NamedQuery(name="TaskLog.findTaskLogCountByUser", query="SELECT count(t) FROM TaskLog t WHERE t.user=:user")
+	
+	
+	
+})
 public class TaskLog implements Serializable {
 	private static final long serialVersionUID = 1L;
 

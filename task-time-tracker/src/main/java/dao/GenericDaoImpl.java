@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+@Transactional
 public class GenericDaoImpl<T, ID extends Serializable> implements GenericDao<T, ID> {
 	
 	final protected Logger logger =	LoggerFactory.getLogger(this.getClass());	

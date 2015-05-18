@@ -9,8 +9,10 @@ import java.util.List;
 
 @Entity
 @NamedQueries({
-	@NamedQuery(name="User.findAll", query="SELECT u FROM User u"),
-	@NamedQuery(name="User.findByUsernamePassword", query="SELECT u FROM User u WHERE u.username=:userName and u.password=:password"),
+	@NamedQuery(name="User.findAll", query="SELECT u FROM User u ORDER BY u.firstName, u.lastName"),
+	@NamedQuery(name="User.findByUsernamePassword", query="SELECT u FROM User u "
+			+ "WHERE ((u.username=:username) or (u.email=:username)) and (u.password=:password)"),
+	@NamedQuery(name="User.findByUsername", query="SELECT u FROM User u WHERE u.username=:userName"),
 	@NamedQuery(name="User.findByEmail", query="SELECT u FROM User u WHERE u.email=:email")
 }) 
 
