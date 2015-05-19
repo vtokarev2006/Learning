@@ -67,9 +67,7 @@ public class CompanyDaoTest extends AbstractDaoForTesting {
 	@Test
 	public void testRemove() throws Exception {
 		logger.debug("\nSTARTED testRemove()\n");
-		List<Company> company=companyDao.findAll();
-		logger.info("!!!!!!!!!!!!!!"+Integer.toString(company.size()));
-		Company c = company.get(company.size()-1);
+		Company c = companyDao.findAll().get(0);
 		
 		companyDao.remove(c);
 		List<Company> allItems = companyDao.findAll();

@@ -18,7 +18,7 @@ public class Task extends AbstractEntity implements EntityItem<Integer>  {
 	@ManyToOne
 	private Project project;
 
-	@OneToMany(mappedBy="task")
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="task")
 	private List<TaskLog> taskLogs;
 
 	public Task() {

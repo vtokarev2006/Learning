@@ -20,7 +20,7 @@ public class Project extends AbstractEntity implements EntityItem<Integer>  {
 	@ManyToOne
 	private Company company;
 
-	@OneToMany(mappedBy="project")
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="project")
 	private List<Task> tasks;
 
 	public Project() {
