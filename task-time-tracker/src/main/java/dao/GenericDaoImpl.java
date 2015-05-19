@@ -34,6 +34,7 @@ public class GenericDaoImpl<T, ID extends Serializable> implements GenericDao<T,
 	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
 	public void persist(T obj) {
 		em.persist(obj);
+		//em.flush();
 	}
 
 	@Override
@@ -45,7 +46,8 @@ public class GenericDaoImpl<T, ID extends Serializable> implements GenericDao<T,
 	@Override
 	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
 	public void remove(T obj) {
-		em.remove(em.merge(obj));
+//		em.remove(em.merge(obj));
+		em.remove(obj);
 	}
 
 }

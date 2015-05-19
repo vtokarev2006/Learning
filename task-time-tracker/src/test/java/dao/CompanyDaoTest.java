@@ -27,6 +27,7 @@ public class CompanyDaoTest extends AbstractDaoForTesting {
 	@Test
 	public void testFindAll() throws Exception {
 		logger.debug("\nSTARTED testFindAll()\n");
+		
 		int rowCount = countRowsInTable("company");
 		if (rowCount > 0) {
 			List<Company> allItems = companyDao.findAll();
@@ -47,8 +48,8 @@ public class CompanyDaoTest extends AbstractDaoForTesting {
 		final String NEW_NAME = "Persist Test Company name";
 		c.setName(NEW_NAME);
 		companyDao.persist(c);
-		assertTrue(c.getId() != null);
 		assertTrue(c.getName().equals(NEW_NAME));
+		assertTrue(c.getId() != null);
 		logger.debug("\nFINISHED testPersist()\n");
 	}
 
@@ -66,7 +67,10 @@ public class CompanyDaoTest extends AbstractDaoForTesting {
 	@Test
 	public void testRemove() throws Exception {
 		logger.debug("\nSTARTED testRemove()\n");
-		Company c = companyDao.findAll().get(0);
+		List<Company> company=companyDao.findAll();
+		logger.info("!!!!!!!!!!!!!!"+Integer.toString(company.size()));
+		Company c = company.get(company.size()-1);
+		
 		companyDao.remove(c);
 		List<Company> allItems = companyDao.findAll();
 		assertTrue("Deleted company may not be in findAll List",

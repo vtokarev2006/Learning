@@ -4,11 +4,11 @@
   
   
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>domain.Company</class>
-    <class>domain.Project</class>
-    <class>domain.Task</class>
-    <class>domain.TaskLog</class>
-    <class>domain.User</class>
+    <class>model.Company</class>
+    <class>model.Project</class>
+    <class>model.Task</class>
+    <class>model.TaskLog</class>
+    <class>model.User</class>
     
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     

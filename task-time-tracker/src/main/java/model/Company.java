@@ -5,7 +5,10 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@NamedQuery(name="Company.findAll", query="SELECT c FROM Company c ORDER BY c.name ASC")
+@NamedQueries({
+	@NamedQuery(name="Company.findAll", query="SELECT c FROM Company c ORDER BY c.id ASC")
+	
+})
 
 public class Company extends AbstractEntity implements EntityItem<Integer> {
 
@@ -17,7 +20,7 @@ public class Company extends AbstractEntity implements EntityItem<Integer> {
 
 	private String name;
 
-	@OneToMany(mappedBy="company")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="company")
 	private List<Project> projects;
 
 	public Company() {
