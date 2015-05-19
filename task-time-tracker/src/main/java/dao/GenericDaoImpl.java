@@ -34,7 +34,7 @@ public class GenericDaoImpl<T, ID extends Serializable> implements GenericDao<T,
 	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
 	public void persist(T obj) {
 		em.persist(obj);
-		//em.flush();
+		em.flush();
 	}
 
 	@Override
