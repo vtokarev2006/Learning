@@ -79,6 +79,8 @@ public class Result<T> implements Serializable {
 		result = prime * result + (success ? 1231 : 1237);
 		return result;
 	}
+
+	
 	
 	@Override
 	public boolean equals(Object obj) {
@@ -94,4 +96,5 @@ public class Result<T> implements Serializable {
 		}
 		return Objects.deepEquals(this.data, other.data);
 	}
+	
 }
