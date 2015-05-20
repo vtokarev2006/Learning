@@ -36,8 +36,7 @@ public class CompanyServiceImpl extends AbstractService implements CompanyServic
 	
 	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
 	@Override
-	public Result<Company> store(Integer companyId, String companyName,
-			String actionUsername) {
+	public Result<Company> store(Integer companyId, String companyName,	String actionUsername) {
 		
 		if (!isValidUser(actionUsername))
 			return ResultFactory.getFailResult(USER_INVALID);
@@ -82,7 +81,7 @@ public class CompanyServiceImpl extends AbstractService implements CompanyServic
 		Company company = companyDao.find(companyId);
 		
 		if (company==null) {
-			return ResultFactory.getFailResult("Unable to load Company for removal with idCompany=" + companyId);
+			return ResultFactory.getFailResult("Unable to load Company for removal with companyId=" + companyId);
 		} else {
 			if (company.getProjects()!=null) {
 				return ResultFactory.getFailResult("Company has	projects assigned and could not be deleted");				
