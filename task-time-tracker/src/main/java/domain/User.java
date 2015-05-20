@@ -23,7 +23,7 @@ public class User extends AbstractEntity implements EntityItem<String>  {
 	private String username;
 
 	@Column(name="admin_role")
-	private String adminRole;
+	private Character adminRole;
 
 	private String email;
 
@@ -49,11 +49,11 @@ public class User extends AbstractEntity implements EntityItem<String>  {
 		this.username = username;
 	}
 
-	public String getAdminRole() {
+	public Character getAdminRole() {
 		return this.adminRole;
 	}
 
-	public void setAdminRole(String adminRole) {
+	public void setAdminRole(Character adminRole) {
 		this.adminRole = adminRole;
 	}
 
@@ -115,8 +115,10 @@ public class User extends AbstractEntity implements EntityItem<String>  {
 	public String getId() {
 		return username;
 	}
-	
-	
+
+	public boolean isAdmin() {
+		return adminRole == null ? false : adminRole.equals('Y');
+	}
 
 	@Override
 	public int hashCode() {
