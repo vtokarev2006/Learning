@@ -75,5 +75,12 @@ public class CompanyDaoTest extends AbstractDaoForTesting {
 				!allItems.contains(c));
 		logger.debug("\nFINISHED testRemove()\n");
 	}
+	
+	@Test
+	public void testNegativeId() throws Exception {
+		logger.debug("\nSTARTED testNegativeId()\n");
+		Company c = companyDao.find(-1);
+		assertTrue("Find company with negative id!!!!!",c==null);
+	}
 
 }

@@ -26,8 +26,7 @@ public class UserDaoImpl extends GenericDaoImpl<User, String> implements UserDao
 	@Transactional(readOnly=true, propagation=Propagation.SUPPORTS)
 	public User findByUsernamePassword(String username, String password) {
 		List<User> users = em.createNamedQuery("User.findByUsernamePassword", type).
-				setParameter("userName", username).
-				setParameter("email", username).
+				setParameter("username", username).
 				setParameter("password", password).
 				getResultList();
 		return users.size()==1 ? users.get(0) : null;
