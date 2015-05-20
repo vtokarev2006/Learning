@@ -19,5 +19,13 @@ public abstract class AbstractService {
 	protected boolean isValidUser(String username) {
 		return userDao.findByUsername(username) == null ? false : true;
 	}
+	
+	protected boolean isAdmin(String username){
+		if (isValidUser(username)){
+			return userDao.findByUsername(username).isAdmin();
+		} else {
+			return false;
+		}
+	}
 
 }
