@@ -2,7 +2,7 @@ package dao;
 
 import java.util.List;
 
-import model.Company;
+import domain.Company;
 
 public interface CompanyDao extends GenericDao<Company, Integer> {
 	

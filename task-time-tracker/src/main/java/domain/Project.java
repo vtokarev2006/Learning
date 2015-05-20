@@ -1,17 +1,14 @@
-package model;
+package domain;
 
 import javax.persistence.*;
 
 import java.util.List;
 
 @Entity
-@NamedQueries({
-	@NamedQuery(name="Company.findAll", query="SELECT c FROM Company c ORDER BY c.id ASC")
+@NamedQuery(name="Project.findAll", query="SELECT p FROM Project p ORDER BY p.name")
+
+public class Project extends AbstractEntity implements EntityItem<Integer>  {
 	
-})
-
-public class Company extends AbstractEntity implements EntityItem<Integer> {
-
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -20,10 +17,13 @@ public class Company extends AbstractEntity implements EntityItem<Integer> {
 
 	private String name;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="company")
-	private List<Project> projects;
+	@ManyToOne
+	private Company company;
 
-	public Company() {
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="project")
+	private List<Task> tasks;
+
+	public Project() {
 	}
 
 	@Override
@@ -43,26 +43,34 @@ public class Company extends AbstractEntity implements EntityItem<Integer> {
 		this.name = name;
 	}
 
-	public List<Project> getProjects() {
-		return this.projects;
+	public Company getCompany() {
+		return this.company;
 	}
 
-	public void setProjects(List<Project> projects) {
-		this.projects = projects;
+	public void setCompany(Company company) {
+		this.company = company;
 	}
 
-	public Project addProject(Project project) {
-		getProjects().add(project);
-		project.setCompany(this);
-
-		return project;
+	public List<Task> getTasks() {
+		return this.tasks;
 	}
 
-	public Project removeProject(Project project) {
-		getProjects().remove(project);
-		project.setCompany(null);
+	public void setTasks(List<Task> tasks) {
+		this.tasks = tasks;
+	}
 
-		return project;
+	public Task addTask(Task task) {
+		getTasks().add(task);
+		task.setProject(this);
+
+		return task;
+	}
+
+	public Task removeTask(Task task) {
+		getTasks().remove(task);
+		task.setProject(null);
+
+		return task;
 	}
 
 	@Override
@@ -81,7 +89,7 @@ public class Company extends AbstractEntity implements EntityItem<Integer> {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Company other = (Company) obj;
+		Project other = (Project) obj;
 		if (id != other.id)
 			return false;
 		return true;

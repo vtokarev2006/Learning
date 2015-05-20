@@ -5,11 +5,11 @@
 	
 		<jta-data-source>jdbc/ttt</jta-data-source>
 	
-		<class>model.Company</class>
-		<class>model.Project</class>
-		<class>model.Task</class>
-		<class>model.TaskLog</class>
-		<class>model.User</class>
+		<class>domain.Company</class>
+		<class>domain.Project</class>
+		<class>domain.Task</class>
+		<class>domain.TaskLog</class>
+		<class>domain.User</class>
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<properties>
 <!-- 		

@@ -1,10 +1,12 @@
 package dao;
 
-import model.Company;
-import model.Project;
-import model.User;
 import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
+
+import domain.Company;
+import domain.Project;
+import domain.User;
 
 public class JpaTrapTest extends AbstractDaoForTesting {
 
@@ -45,6 +47,11 @@ public class JpaTrapTest extends AbstractDaoForTesting {
 		user = userDao.findByUsernamePassword("bjones", "ADMIN");
 
 		assertTrue("User found with invalid password", user == null);
+
+		user = userDao.findByUsernamePassword("bjones", "admin");
+		
+		assertTrue("User doesn't found with valid username/password", user != null);
+		
 
 		logger.debug("\nFINISHED testFindByUsernamePassword()\n");
 	}

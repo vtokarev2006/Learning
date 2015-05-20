@@ -3,9 +3,9 @@ package dao;
 import java.util.Date;
 import java.util.List;
 
-import model.Task;
-import model.TaskLog;
-import model.User;
+import domain.Task;
+import domain.TaskLog;
+import domain.User;
 
 public interface TaskLogDao extends GenericDao<TaskLog, Integer> {
 	

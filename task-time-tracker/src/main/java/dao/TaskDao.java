@@ -2,7 +2,7 @@ package dao;
 
 import java.util.List;
 
-import model.Task;
+import domain.Task;
 
 public interface TaskDao extends GenericDao<Task, Integer> {
 	

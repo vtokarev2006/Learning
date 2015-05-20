@@ -7,9 +7,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import model.Task;
-import model.TaskLog;
-import model.User;
+import domain.Task;
+import domain.TaskLog;
+import domain.User;
 
 @Repository("TaskLogDao")
 @Transactional

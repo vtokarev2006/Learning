@@ -2,7 +2,7 @@ package dao;
 
 import java.util.List;
 
-import model.User;
+import domain.User;
 
 public interface UserDao extends GenericDao<User, String> {
 	

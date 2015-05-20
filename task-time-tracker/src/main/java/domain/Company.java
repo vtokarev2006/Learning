@@ -1,14 +1,17 @@
-package model;
+package domain;
 
 import javax.persistence.*;
 
 import java.util.List;
 
 @Entity
-@NamedQuery(name="Project.findAll", query="SELECT p FROM Project p ORDER BY p.name")
-
-public class Project extends AbstractEntity implements EntityItem<Integer>  {
+@NamedQueries({
+	@NamedQuery(name="Company.findAll", query="SELECT c FROM Company c ORDER BY c.id ASC")
 	
+})
+
+public class Company extends AbstractEntity implements EntityItem<Integer> {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -17,13 +20,10 @@ public class Project extends AbstractEntity implements EntityItem<Integer>  {
 
 	private String name;
 
-	@ManyToOne
-	private Company company;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="company")
+	private List<Project> projects;
 
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="project")
-	private List<Task> tasks;
-
-	public Project() {
+	public Company() {
 	}
 
 	@Override
@@ -43,34 +43,26 @@ public class Project extends AbstractEntity implements EntityItem<Integer>  {
 		this.name = name;
 	}
 
-	public Company getCompany() {
-		return this.company;
+	public List<Project> getProjects() {
+		return this.projects;
 	}
 
-	public void setCompany(Company company) {
-		this.company = company;
+	public void setProjects(List<Project> projects) {
+		this.projects = projects;
 	}
 
-	public List<Task> getTasks() {
-		return this.tasks;
+	public Project addProject(Project project) {
+		getProjects().add(project);
+		project.setCompany(this);
+
+		return project;
 	}
 
-	public void setTasks(List<Task> tasks) {
-		this.tasks = tasks;
-	}
+	public Project removeProject(Project project) {
+		getProjects().remove(project);
+		project.setCompany(null);
 
-	public Task addTask(Task task) {
-		getTasks().add(task);
-		task.setProject(this);
-
-		return task;
-	}
-
-	public Task removeTask(Task task) {
-		getTasks().remove(task);
-		task.setProject(null);
-
-		return task;
+		return project;
 	}
 
 	@Override
@@ -89,7 +81,7 @@ public class Project extends AbstractEntity implements EntityItem<Integer>  {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Project other = (Project) obj;
+		Company other = (Company) obj;
 		if (id != other.id)
 			return false;
 		return true;

@@ -4,9 +4,9 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
-import model.Company;
-
 import org.junit.Test;
+
+import domain.Company;
 
 public class CompanyDaoTest extends AbstractDaoForTesting {
 
