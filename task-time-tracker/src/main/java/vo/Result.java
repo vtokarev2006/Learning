@@ -7,6 +7,7 @@ import java.util.Objects;
 public class Result<T> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
 	final private boolean success;
 	final private T data;
 	final private String msg;
