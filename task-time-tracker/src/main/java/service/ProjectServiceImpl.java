@@ -1,5 +1,6 @@
 package service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,13 +58,13 @@ public class ProjectServiceImpl extends AbstractService implements ProjectServic
 		if (projectId == null) {
 			project = new Project();
 			project.setCompany(company);
+			
+			if (company.getProjects() == null) {
+				List<Project> projects = new ArrayList<>();
+				company.setProjects(projects);
+			}
+			
 			company.getProjects().add(project);
-			
-			
-			
-/////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!///////////////////////////////			
-			
-			
 		} else {
 			project = projectDao.find(projectId);
 			if (project == null) {
