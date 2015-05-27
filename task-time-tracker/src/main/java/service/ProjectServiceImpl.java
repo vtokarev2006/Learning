@@ -139,6 +139,5 @@ public class ProjectServiceImpl extends AbstractService implements ProjectServic
 		return ResultFactory.getSuccessResult(projects);
 	}
 	
-	
 
 }

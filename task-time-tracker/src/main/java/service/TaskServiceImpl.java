@@ -11,6 +11,7 @@ import vo.Result;
 import vo.ResultFactory;
 import dao.ProjectDao;
 import dao.TaskDao;
+import dao.TaskLogDao;
 import domain.Project;
 import domain.Task;
 
@@ -18,6 +19,9 @@ public class TaskServiceImpl extends AbstractService implements TaskService {
 	
 	@Autowired
 	TaskDao taskDao;
+	
+	@Autowired
+	TaskLogDao taskLogDao;
 	
 	@Autowired
 	ProjectDao projectDao;
@@ -110,15 +114,18 @@ public class TaskServiceImpl extends AbstractService implements TaskService {
 		
 		Task task = taskDao.find(taskId);
 		
-		if (task==null) {
+		if (task==null)
 			return ResultFactory.getFailResult("Unable to load Project for removal with taskId=" + taskId);
-			
-		} else {
-			taskDao.remove(task);
-			String msg = "Task " + task.getName() + " was deleted by " + actionUsername;
-			logger.info(msg);
-			return ResultFactory.getSuccessResultMsg(msg);				
-		}
+		
+		
+		if (taskLogDao.findTaskLogCountByTask(task)>0)
+			return ResultFactory.getFailResult("Unable to remove Task with taskId=" + taskId + " as valid task logs are assigned");
+
+		
+		taskDao.remove(task);
+		String msg = "Task " + task.getName() + " was deleted by " + actionUsername;
+		logger.info(msg);
+		return ResultFactory.getSuccessResultMsg(msg);				
 		
 	}
 	
