@@ -2,6 +2,7 @@ package dao;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
@@ -24,9 +25,10 @@ public class CompanyDaoTest extends AbstractDaoForTesting {
 		assertTrue(c1.equals(c2));
 		logger.debug("\nFINISHED testFind()\n");
 		
-		Company company = companyDao.find(3);
 		
-		List<TaskLog> taskLogs = taskLogDao.findByUser(null, null, null);
+		
+		List<TaskLog> taskLogs = taskLogDao.findByUser(null, new Date(), new Date());
+		assertTrue(taskLogs==null || taskLogs.isEmpty() );
 		
 		
 		

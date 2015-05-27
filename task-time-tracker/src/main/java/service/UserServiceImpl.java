@@ -68,7 +68,7 @@ public class UserServiceImpl extends AbstractService implements UserService {
 			
 		} else {
 			
-			if (!user.equals(testByEmailUser)) {
+			if ((testByEmailUser!=null) && !user.equals(testByEmailUser)) {
 				return ResultFactory.getFailResult("The email address is already in use by username=" + testByEmailUser.getUsername() + "and cannot be assigned to " + username);
 			}
 			

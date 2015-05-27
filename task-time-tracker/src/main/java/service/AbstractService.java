@@ -17,12 +17,13 @@ public abstract class AbstractService {
 	protected final String USER_NOT_ADMIN = "Not an admin user";
 
 	protected boolean isValidUser(String username) {
-		return userDao.findByUsername(username) == null ? false : true;
+		
+		return (userDao.findByUsername(username) == null) && (userDao.findByEmail(username) == null) ? false : true;
 	}
 	
 	protected boolean isAdmin(String username){
 		if (isValidUser(username)){
-			return userDao.findByUsername(username).isAdmin();
+			return userDao.findByUsername(username).isAdmin() || userDao.findByEmail(username).isAdmin() ;
 		} else {
 			return false;
 		}

@@ -33,10 +33,12 @@
   				<skipTests>false</skipTests>
   				<includes>
   					<include>**/dao/*Test.java</include>
+  					<include>**/service/*Test.java</include>
+  					
   				</includes>
 
   				
-  				<argLine>-javaagent:C:\Users\Vyacheslav\.m2\repository\org\springframework\spring-instrument\4.1.6.RELEASE\spring-instrument-4.1.6.RELEASE.jar</argLine>
+  				<argLine>-javaagent:C:\Users\vtokarev\.m2\repository\org\springframework\spring-instrument\4.1.6.RELEASE\spring-instrument-4.1.6.RELEASE.jar</argLine>
   				
 
 <!--    				

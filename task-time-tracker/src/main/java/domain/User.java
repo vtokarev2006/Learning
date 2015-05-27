@@ -12,7 +12,7 @@ import java.util.List;
 	@NamedQuery(name="User.findByUsernamePassword", query="SELECT u FROM User u "
 			+ "WHERE ((u.username=:username) or (u.email=:username)) and (u.password=:password)"),
 			
-	@NamedQuery(name="User.findByUsername", query="SELECT u FROM User u WHERE u.username=:userName"),
+	@NamedQuery(name="User.findByUsername", query="SELECT u FROM User u WHERE u.username=:username"),
 	@NamedQuery(name="User.findByEmail", query="SELECT u FROM User u WHERE u.email=:email")
 }) 
 

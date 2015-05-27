@@ -41,6 +41,8 @@
 	<context:annotation-config />
 	<!-- Scan for Repository/Service annotations -->
 	<context:component-scan base-package="dao" />
+	<context:component-scan base-package="service" />	
+	
 	<!-- enable the configuration of transactional behavior based on annotations -->
 	<tx:annotation-driven />
 </beans>

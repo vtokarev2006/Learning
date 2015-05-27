@@ -83,7 +83,7 @@ public class CompanyServiceImpl extends AbstractService implements CompanyServic
 		if (company==null) {
 			return ResultFactory.getFailResult("Unable to load Company for removal with companyId=" + companyId);
 		} else {
-			if (company.getProjects()!=null) {
+			if (company.getProjects()!=null && !company.getProjects().isEmpty() ) {
 				return ResultFactory.getFailResult("Company has	projects assigned and could not be deleted");				
 				
 			} else {

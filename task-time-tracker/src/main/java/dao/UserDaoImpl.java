@@ -44,9 +44,11 @@ public class UserDaoImpl extends GenericDaoImpl<User, String> implements UserDao
 	@Override
 	@Transactional(readOnly=true, propagation=Propagation.SUPPORTS)
 	public User findByUsername(String username) {
+		
 		List<User> users = em.createNamedQuery("User.findByUsername", type).
 				setParameter("username", username ).
 				getResultList();
+		
 		return users.size()==1 ? users.get(0) : null;
 	}
 
