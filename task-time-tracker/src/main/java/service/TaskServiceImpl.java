@@ -92,7 +92,6 @@ public class TaskServiceImpl extends AbstractService implements TaskService {
 		
 		return ResultFactory.getSuccessResult(task);
 		
-		///////////////////
 		
 	}
 
@@ -106,8 +105,21 @@ public class TaskServiceImpl extends AbstractService implements TaskService {
 		if (!isAdmin(actionUsername)) 
 			return ResultFactory.getFailResult(USER_NOT_ADMIN);
 		
+		if (taskId == null)
+			return ResultFactory.getFailResult("Unable to remove Task [null taskId]");
 		
-		return null;
+		Task task = taskDao.find(taskId);
+		
+		if (task==null) {
+			return ResultFactory.getFailResult("Unable to load Project for removal with taskId=" + taskId);
+			
+		} else {
+			taskDao.remove(task);
+			String msg = "Task " + task.getName() + " was deleted by " + actionUsername;
+			logger.info(msg);
+			return ResultFactory.getSuccessResultMsg(msg);				
+		}
+		
 	}
 	
 	@Transactional(readOnly=true, propagation=Propagation.SUPPORTS)
@@ -116,9 +128,10 @@ public class TaskServiceImpl extends AbstractService implements TaskService {
 		
 		if (!isValidUser(actionUsername))
 			return ResultFactory.getFailResult(USER_INVALID);
-
 		
-		return null;
+		Task task = taskDao.find(taskId);
+		return ResultFactory.getSuccessResult(task);
+		
 	}
 
 	@Transactional(readOnly=true, propagation=Propagation.SUPPORTS)
@@ -128,8 +141,10 @@ public class TaskServiceImpl extends AbstractService implements TaskService {
 		if (!isValidUser(actionUsername))
 			return ResultFactory.getFailResult(USER_INVALID);
 		
+		List<Task> tasks = taskDao.findAll();
 		
-		return null;
+		return ResultFactory.getSuccessResult(tasks); 
+		
 	}
 
 }
