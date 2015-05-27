@@ -3,6 +3,7 @@ package service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,12 +12,18 @@ import vo.ResultFactory;
 import dao.TaskLogDao;
 import domain.User;
 
+@Transactional
+@Service("userService")
 public class UserServiceImpl extends AbstractService implements UserService {
 	
 	@Autowired
 	TaskLogDao taskLogDao;
 	
-
+	UserServiceImpl(){
+		super();
+		
+	}
+	
 	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
 	@Override
 	public Result<User> store(String username, String firstName, String lastName, String email, String password, Character adminRole, String actionUsername) {
@@ -56,6 +63,8 @@ public class UserServiceImpl extends AbstractService implements UserService {
 			}
 			
 			user = new User();
+			user.setUsername(username);
+			
 			
 		} else {
 			
@@ -66,7 +75,6 @@ public class UserServiceImpl extends AbstractService implements UserService {
 			insert = false;
 		}
 		
-		user.setUsername(username);
 		user.setPassword(password);
 		user.setEmail(email);
 		user.setFirstName(firstName);

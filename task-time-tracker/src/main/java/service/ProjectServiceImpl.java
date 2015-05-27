@@ -15,10 +15,9 @@ import dao.ProjectDao;
 import domain.*;
 
 
-@Transactional(readOnly=true, propagation=Propagation.SUPPORTS)
+@Transactional
 @Service("projectService")
 public class ProjectServiceImpl extends AbstractService implements ProjectService {
-	
 	
 	@Autowired
 	private ProjectDao projectDao;
@@ -98,21 +97,16 @@ public class ProjectServiceImpl extends AbstractService implements ProjectServic
 		
 		Project project = projectDao.find(projectId);
 		
-		if (project==null) {
+		if (project==null)
 			return ResultFactory.getFailResult("Unable to load Project for removal with projectId=" + projectId);
-		} else {
-			if (project.getTasks()!=null && !project.getTasks().isEmpty() ) {
-				
-				return ResultFactory.getFailResult("Project has	tasks assigned and could not be deleted");
-				
-			} else {
-				
-				projectDao.remove(project);
-				String msg = "Project " + project.getName() + " was deleted by " + actionUsername;
-				logger.info(msg);
-				return ResultFactory.getSuccessResultMsg(msg);				
-			}
-		}
+		
+		if (project.getTasks()!=null && !project.getTasks().isEmpty() )
+			return ResultFactory.getFailResult("Project has	tasks assigned and could not be deleted");
+		
+		projectDao.remove(project);
+		String msg = "Project " + project.getName() + " was deleted by " + actionUsername;
+		logger.info(msg);
+		return ResultFactory.getSuccessResultMsg(msg);				
 		
 	}
 
@@ -138,6 +132,7 @@ public class ProjectServiceImpl extends AbstractService implements ProjectServic
 		List<Project> projects = projectDao.findAll();
 		return ResultFactory.getSuccessResult(projects);
 	}
+	
 	
 
 }

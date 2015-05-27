@@ -7,6 +7,7 @@ import java.util.List;
 import org.junit.Test;
 
 import domain.Company;
+import domain.TaskLog;
 
 public class CompanyDaoTest extends AbstractDaoForTesting {
 
@@ -22,6 +23,14 @@ public class CompanyDaoTest extends AbstractDaoForTesting {
 		Company c2 = companyDao.find(id);
 		assertTrue(c1.equals(c2));
 		logger.debug("\nFINISHED testFind()\n");
+		
+		Company company = companyDao.find(3);
+		
+		List<TaskLog> taskLogs = taskLogDao.findByUser(null, null, null);
+		
+		
+		
+		
 	}
 
 	@Test

@@ -11,7 +11,7 @@ import vo.*;
 import dao.CompanyDao;
 import domain.*;
 
-@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
+@Transactional
 @Service("companyService")
 public class CompanyServiceImpl extends AbstractService implements CompanyService {
 	
