@@ -1,5 +1,6 @@
 package domain;
 
+import javax.json.JsonObjectBuilder;
 import javax.persistence.*;
 
 import java.util.List;
@@ -91,6 +92,25 @@ public class Task extends AbstractEntity implements EntityItem<Integer>  {
 		if (id != other.id)
 			return false;
 		return true;
+	}
+
+	@Override
+	public void addJson(JsonObjectBuilder builder) {
+		
+		builder.add("taskId",id).add("taskName", name);
+		
+		if (project != null) { 
+			project.addJson(builder);
+		
+			Company company = project.getCompany();
+			
+			if (company != null) {
+				company.addJson(builder);
+			}
+			
+		
+		}
+		
 	}
 
 }

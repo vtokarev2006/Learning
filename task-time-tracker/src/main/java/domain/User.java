@@ -1,5 +1,6 @@
 package domain;
 
+import javax.json.JsonObjectBuilder;
 import javax.persistence.*;
 
 import java.util.List;
@@ -144,6 +145,17 @@ public class User extends AbstractEntity implements EntityItem<String>  {
 		} else if (!username.equals(other.username))
 			return false;
 		return true;
+	}
+
+	@Override
+	public void addJson(JsonObjectBuilder builder) {
+		
+		builder.add("username", username)
+				.add("firstName", firstName)
+				.add("lastName", lastName)
+				.add("email", email)
+				.add("adminRole", adminRole + "")
+				.add("fullName", firstName + " " + lastName);		
 	}
 
 

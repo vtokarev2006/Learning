@@ -1,5 +1,6 @@
 package domain;
 
+import javax.json.JsonObjectBuilder;
 import javax.persistence.*;
 
 import java.util.List;
@@ -93,6 +94,19 @@ public class Project extends AbstractEntity implements EntityItem<Integer>  {
 		if (id != other.id)
 			return false;
 		return true;
+	}
+
+	@Override
+	public void addJson(JsonObjectBuilder builder) {
+		
+		builder.add("projectId", id).add("projectName", name);
+		
+		if (company != null) 
+			company.addJson(builder);
+		
+		
+		
+		
 	}
 
 }

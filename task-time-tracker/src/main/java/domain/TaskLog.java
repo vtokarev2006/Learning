@@ -1,7 +1,9 @@
 package domain;
 
+import javax.json.JsonObjectBuilder;
 import javax.persistence.*;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -17,6 +19,10 @@ import java.util.Date;
 })
 
 public class TaskLog extends AbstractEntity implements EntityItem<Integer>  {
+	
+    static final SimpleDateFormat DATE_FORMAT_yyyyMMdd = new SimpleDateFormat("yyyyMMdd");
+	
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -110,6 +116,24 @@ public class TaskLog extends AbstractEntity implements EntityItem<Integer>  {
 		if (id != other.id)
 			return false;
 		return true;
+	}
+
+	@Override
+	public void addJson(JsonObjectBuilder builder) {
+		
+		builder.add("taskLogId",id).
+				add("taskDescription", description).
+				add("taskLogDate", taskDate == null ? "" : DATE_FORMAT_yyyyMMdd.format(taskDate)).
+				add("taskMinutes", taskMinutes);
+		
+		if (user != null) {
+			user.addJson(builder);
+		}
+		
+		if (task != null) {
+			task.addJson(builder);
+		}
+		
 	}
 
 }
