@@ -1,0 +1,118 @@
+package web;
+
+import static web.SecurityHelper.getSessionUser;
+
+import java.util.List;
+
+import javax.json.JsonObject;
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import domain.Task;
+import domain.User;
+import service.TaskService;
+import vo.Result;
+
+@Controller
+@RequestMapping("/task")
+public class TaskHandler extends AbstractHandler {
+	
+	@Autowired
+	TaskService taskService;
+	
+	@RequestMapping(value="/find", method = RequestMethod.GET, produces={"application/json"})
+	@ResponseBody
+	public String find(
+			@RequestParam(value="taskId", required=true) Integer taskId,
+			HttpServletRequest request){
+		
+		User sessionUser = getSessionUser(request);
+		
+		Result<Task> ar = taskService.find(taskId, sessionUser.getUsername());
+		
+		if (ar.isSuccess()) {
+			return getJsonSuccessData(ar.getData());
+		} else {
+			return getJsonErrorMsg(ar.getMsg());
+		}
+		
+	}
+	
+	@RequestMapping(value="/store", method = RequestMethod.POST, produces={"application/json"})
+	@ResponseBody
+	public String store(
+			@RequestParam(value="data", required=true) String jsonData,
+			HttpServletRequest request){
+		
+		User sessionUser = getSessionUser(request);
+		
+		JsonObject jsonObj = parseJsonObject(jsonData);
+		
+		
+		Result<Task> ar = taskService.store(
+				getIntegerValue(jsonObj.get("taskId")), 
+				getIntegerValue(jsonObj.get("projectId")), 
+				jsonObj.getString("Taskname"), 
+				sessionUser.getUsername());
+		
+		if (ar.isSuccess()) {
+			return getJsonSuccessData(ar.getData());
+		} else {
+			return getJsonErrorMsg(ar.getMsg());
+		}
+		
+	}
+	
+	
+	@RequestMapping(value="/findAll", method = RequestMethod.GET, produces={"application/json"})
+	@ResponseBody
+	public String findAll(HttpServletRequest request){
+		
+		User sessionUser = getSessionUser(request);
+		
+		Result<List<Task>> ar = taskService.findAll(sessionUser.getUsername());
+		
+		if (ar.isSuccess()) {
+			
+			return getJsonSuccessData(ar.getData());
+			
+		} else {
+			
+			return getJsonErrorMsg(ar.getMsg());
+			
+		}
+		
+	}
+	
+	@RequestMapping(value="/remove", method = RequestMethod.POST, produces={"application/json"})
+	@ResponseBody
+	public String remove (
+			@RequestParam(value = "data", required=true) String jsonData,
+			HttpServletRequest request){
+		
+		User sessionUser = getSessionUser(request);
+		
+		JsonObject jsonObj =parseJsonObject(jsonData);
+		
+		Result<Task> ar = taskService.remove(
+				getIntegerValue(jsonObj.get("taskId")), 
+				sessionUser.getUsername());
+		
+		if (ar.isSuccess()) {
+			return getJsonSuccessMsg(ar.getMsg());
+		} else {
+			return getJsonErrorMsg(ar.getMsg());
+			
+		}
+		
+	}
+	
+	
+
+}
