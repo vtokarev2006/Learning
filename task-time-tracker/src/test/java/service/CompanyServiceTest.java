@@ -22,11 +22,13 @@ public class CompanyServiceTest extends AbstractServiceForTesting {
 	@Autowired
 	protected ProjectDao projectDao;
 
+	
 	@Test
 	public void testFind() throws Exception {
 
 		logger.debug("\nSTARTED testFind()\n");
-
+		
+		
 		Result<List<Company>> allItems = companyService.findAll(TEST_USERNAME);
 
 		assertTrue(allItems.getData().size() > 0);

@@ -32,10 +32,5 @@ public class UserInSessionInterceptor extends HandlerInterceptorAdapter {
 			return true;
 		}		
 	}
-	
-	
-	
-	
-	
 
 }
