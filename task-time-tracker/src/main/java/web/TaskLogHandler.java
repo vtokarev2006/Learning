@@ -39,7 +39,7 @@ public class TaskLogHandler extends AbstractHandler {
 		binder.registerCustomEditor(Date.class, new	CustomDateEditor(DATE_FORMAT_yyyyMMdd, true));
 	}
 	
-	@RequestMapping(value="/find", method=RequestMethod.GET, consumes={"application/json"})
+	@RequestMapping(value="/find", method=RequestMethod.GET, produces={"application/json"})
 	@ResponseBody
 	public String find(
 			@RequestParam(value="taskLogId", required=true) Integer taskLogId,
@@ -61,7 +61,7 @@ public class TaskLogHandler extends AbstractHandler {
 	}
 	
 	
-	@RequestMapping(value="/store", method=RequestMethod.POST, consumes={"application/json"})
+	@RequestMapping(value="/store", method=RequestMethod.POST, produces={"application/json"})
 	@ResponseBody
 	public String store (
 			@RequestParam(value="data", required=true) String jsonData,
@@ -90,7 +90,7 @@ public class TaskLogHandler extends AbstractHandler {
 		
 	}
 	
-	@RequestMapping(value="/findByUser", method=RequestMethod.GET, consumes={"application/json"})
+	@RequestMapping(value="/findByUser", method=RequestMethod.GET, produces={"application/json"})
 	@ResponseBody
 	String findByUser(
 			@RequestParam(value="userame", required=true) String username,
@@ -114,7 +114,7 @@ public class TaskLogHandler extends AbstractHandler {
 		
 	}
 	
-	@RequestMapping(value="/remove", method=RequestMethod.POST, consumes={"application/json"})
+	@RequestMapping(value="/remove", method=RequestMethod.POST, produces={"application/json"})
 	@ResponseBody
 	public String remove(
 			@RequestParam(value="data", required=true) String jsonData, 
