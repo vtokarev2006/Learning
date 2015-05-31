@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import domain.Company;
 import domain.User;
 import service.CompanyService;
+import service.UserService;
 import vo.Result;
 
 
@@ -26,6 +27,10 @@ public class CompanyHandler extends AbstractHandler {
 	
 	@Autowired
 	protected CompanyService companyService;
+	
+	@Autowired
+	protected UserService userService;
+	
 	
 	@RequestMapping(value="/find", method=RequestMethod.GET, produces={"application/json"})
 	@ResponseBody
@@ -84,6 +89,9 @@ public class CompanyHandler extends AbstractHandler {
 	public String findAll(HttpServletRequest request){
 		
 		User userSession = getSessionUser(request);
+		
+//		User userSession = userService.findByUsernamePassword("bjones", "admin").getData();
+
 		
 		Result<List<Company>> ar = companyService.findAll(userSession.getUsername());
 		
