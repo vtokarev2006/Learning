@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="task-time-tracker:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="task-time-tracker-0.0.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="task-time-tracker:war exploded" />
+    </root>
+  </artifact>
+</component>
