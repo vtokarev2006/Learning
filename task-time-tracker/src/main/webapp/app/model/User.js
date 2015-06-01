@@ -9,5 +9,6 @@ Ext.define('TTT.model.User', {
              { name: 'email', type: 'string' },
              { name: 'password', type: 'string' },
              { name: 'adminRole', type: 'string' }
-    ]
+    ],
+    idProperty: 'username'
 });

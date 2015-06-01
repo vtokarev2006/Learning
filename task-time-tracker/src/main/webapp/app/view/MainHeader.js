@@ -1,19 +1,17 @@
-   Ext.define('TTT.view.MainHeader', {
+Ext.define('TTT.view.MainHeader', {
     extend: 'Ext.container.Container',
     xtype: 'mainheader',
-
     requires: [
         'Ext.button.Button',
         'Ext.container.Container',
         'Ext.layout.container.HBox',
         'Ext.toolbar.Toolbar'
     ],
-
     layout: {
         align: 'stretch',
         type: 'hbox'
     },
-    initComponent: function(){
+    initComponent: function() {
         var me = this;
         Ext.applyIf(me, {
             items: [{
@@ -38,12 +36,10 @@
                     xtype: 'button',
                     itemId: 'taskAdminBtn',
                     iconCls: 'admin',
-                    hidden: !TTT.getApplication().isAdmin(),
                     text: '3T Admin'
                 }, {
                     xtype: 'button',
                     itemId: 'userAdminBtn',
-                    hidden: !TTT.getApplication().isAdmin(),
                     iconCls: 'users',
                     text: 'Users'
                 }, '->',
@@ -54,13 +50,7 @@
                         text: 'Logoff'
                     }]
             }]
-    });
-
-
-        me.callParent();
-    },
-
-
-    items: [
-    ]
+        });
+        me.callParent(arguments);
+    }
 });
